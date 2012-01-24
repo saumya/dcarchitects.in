@@ -1,6 +1,7 @@
 package com.dzinersCombine.view;
 
 import com.dzinersCombine.controller.ApplicationController;
+import com.dzinersCombine.view.components.VCard;
 import nme.display.Graphics;
 import nme.display.Sprite;
 import nme.events.Event;
@@ -84,6 +85,8 @@ class ApplicationContainer extends Sprite
 		this.addChild(btnPortfolio);
 		this.addChild(btnAboutUs);
 		this.addChild(btnContactUs);
+		//
+		renderAboutUs();
 	}
 	
 	private function onUserSelect(e:MouseEvent):Void 
@@ -96,6 +99,16 @@ class ApplicationContainer extends Sprite
 		var b:ButtonBase = e.target;
 		b.setBg(0x00FF00);
 		this.activeButton = b;
+	}
+	
+	private function renderAboutUs():Void
+	{
+		var v:VCard = new VCard();
+		v.setName('Saumya Ray');
+		v.setDesignation('Architect');
+		v.x = 10;
+		v.y = 10;
+		this.addChild(v);
 	}
 	
 	private function makeItColor(g:Graphics,color:Int):Void
