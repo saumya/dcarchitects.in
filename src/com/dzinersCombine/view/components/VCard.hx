@@ -20,8 +20,11 @@ class VCard extends Sprite
 	
 	private function init():Void 
 	{
-		this.graphics.beginFill(0xCCCCCC);
+		this.graphics.beginFill(0x000000);
 		this.graphics.drawRect(0, 0, 150, 80);
+		this.graphics.endFill();
+		this.graphics.beginFill(0xFFFFFF);
+		this.graphics.drawRect(5, 5, 140, 70);
 		this.graphics.endFill();
 		//
 		this.who = new TextField();
@@ -34,7 +37,7 @@ class VCard extends Sprite
 		this.what.mouseEnabled = false;
 		//
 		this.who.x = this.what.x = 10;
-		this.who.y = 10;
+		this.who.y = 20;
 		this.what.y = 40;
 		this.who.text = this.what.text = 'Mr. 007 .';
 		//

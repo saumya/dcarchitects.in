@@ -48,4 +48,9 @@ class ButtonBase extends Sprite
 		this.label.text = s;
 	}
 	
+	public function getName():String
+	{
+		return this.label.text;
+	}
+	
 }

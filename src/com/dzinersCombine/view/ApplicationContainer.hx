@@ -22,6 +22,8 @@ class ApplicationContainer extends Sprite
 	private var rightBlock:Sprite ;
 	//menu
 	private var activeButton:ButtonBase;
+	//
+	private var aboutUs:AboutUsView;
 
 	public function new() 
 	{
@@ -99,16 +101,22 @@ class ApplicationContainer extends Sprite
 		var b:ButtonBase = e.target;
 		b.setBg(0x00FF00);
 		this.activeButton = b;
+		//
+		if (b.getName()=='About Us')
+		{
+			this.aboutUs.visible = true;
+		}else {
+			this.aboutUs.visible = false;
+		}
 	}
 	
 	private function renderAboutUs():Void
 	{
-		var v:VCard = new VCard();
-		v.setName('Saumya Ray');
-		v.setDesignation('Architect');
-		v.x = 10;
-		v.y = 10;
-		this.addChild(v);
+		this.aboutUs = new AboutUsView();
+		this.aboutUs.x = 50;
+		this.aboutUs.y = 50;
+		this.aboutUs.visible = false;
+		this.addChild(this.aboutUs);
 	}
 	
 	private function makeItColor(g:Graphics,color:Int):Void
