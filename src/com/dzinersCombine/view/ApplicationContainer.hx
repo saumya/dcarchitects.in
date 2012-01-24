@@ -24,6 +24,8 @@ class ApplicationContainer extends Sprite
 	private var activeButton:ButtonBase;
 	//
 	private var aboutUs:AboutUsView;
+	private var contactUs:ContactUs;
+	private var portfolio:Portfolio;
 
 	public function new() 
 	{
@@ -88,7 +90,9 @@ class ApplicationContainer extends Sprite
 		this.addChild(btnAboutUs);
 		this.addChild(btnContactUs);
 		//
-		renderAboutUs();
+		this.renderAboutUs();
+		this.renderContactUs();
+		this.renderPortfolio();
 	}
 	
 	private function onUserSelect(e:MouseEvent):Void 
@@ -102,11 +106,24 @@ class ApplicationContainer extends Sprite
 		b.setBg(0x00FF00);
 		this.activeButton = b;
 		//
-		if (b.getName()=='About Us')
+		switch(b.getName())
 		{
-			this.aboutUs.visible = true;
-		}else {
-			this.aboutUs.visible = false;
+			case 'About Us' :
+				this.aboutUs.visible = true;
+				this.contactUs.visible = false;
+				this.portfolio.visible = false;
+			case 'Contact Us' :
+				this.aboutUs.visible = false;
+				this.contactUs.visible = true;
+				this.portfolio.visible = false;
+			case 'Portfolio' :
+				this.aboutUs.visible = false;
+				this.contactUs.visible = false;
+				this.portfolio.visible = true;
+			default :
+				this.aboutUs.visible = false;
+				this.contactUs.visible = false;
+				this.portfolio.visible = false;
 		}
 	}
 	
@@ -117,6 +134,24 @@ class ApplicationContainer extends Sprite
 		this.aboutUs.y = 50;
 		this.aboutUs.visible = false;
 		this.addChild(this.aboutUs);
+	}
+	
+	private function renderContactUs():Void
+	{
+		this.contactUs = new ContactUs();
+		this.contactUs.x = 50;
+		this.contactUs.y = 50;
+		this.contactUs.visible = false;
+		this.addChild(this.contactUs);
+	}
+	
+	private function renderPortfolio():Void
+	{
+		this.portfolio = new Portfolio();
+		this.portfolio.x = 50;
+		this.portfolio.y = 50;
+		this.portfolio.visible = false;
+		this.addChild(this.portfolio);
 	}
 	
 	private function makeItColor(g:Graphics,color:Int):Void
