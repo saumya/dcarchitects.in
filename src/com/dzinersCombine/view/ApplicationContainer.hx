@@ -4,6 +4,7 @@ import com.dzinersCombine.controller.ApplicationController;
 import nme.display.Graphics;
 import nme.display.Sprite;
 import nme.events.Event;
+import nme.events.MouseEvent;
 import nme.Lib;
 
 import com.eclecticdesignstudio.motion.Actuate;
@@ -18,6 +19,8 @@ class ApplicationContainer extends Sprite
 {
 	private var leftBlock:Sprite ;
 	private var rightBlock:Sprite ;
+	//menu
+	private var activeButton:ButtonBase;
 
 	public function new() 
 	{
@@ -72,10 +75,27 @@ class ApplicationContainer extends Sprite
 		//btnContact.setBg(0x00FF00);
 		btnContactUs.setLabel('Contact Us');
 		//
+		btnHome.addEventListener(MouseEvent.CLICK, onUserSelect);
+		btnPortfolio.addEventListener(MouseEvent.CLICK, onUserSelect);
+		btnAboutUs.addEventListener(MouseEvent.CLICK, onUserSelect);
+		btnContactUs.addEventListener(MouseEvent.CLICK, onUserSelect);
+		//
 		this.addChild(btnHome);
 		this.addChild(btnPortfolio);
 		this.addChild(btnAboutUs);
 		this.addChild(btnContactUs);
+	}
+	
+	private function onUserSelect(e:MouseEvent):Void 
+	{
+		if (this.activeButton!=null)
+		{
+			this.activeButton.setBg(0xFF0000);//TODO: make a reset() method on button class
+		}
+		//
+		var b:ButtonBase = e.target;
+		b.setBg(0x00FF00);
+		this.activeButton = b;
 	}
 	
 	private function makeItColor(g:Graphics,color:Int):Void
