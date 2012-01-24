@@ -29,6 +29,8 @@ class ButtonBase extends Sprite
 		this.label.width = 90;
 		this.label.height = 20;
 		this.label.text = 'Label';
+		this.label.mouseEnabled = false;
+		this.label.selectable = false;
 		//
 		this.addChild(this.label);
 	}

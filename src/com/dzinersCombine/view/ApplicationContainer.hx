@@ -1,7 +1,10 @@
 package com.dzinersCombine.view;
 
+import com.dzinersCombine.controller.ApplicationController;
 import nme.display.Graphics;
 import nme.display.Sprite;
+import nme.events.Event;
+import nme.Lib;
 
 import com.eclecticdesignstudio.motion.Actuate;
 
@@ -19,12 +22,12 @@ class ApplicationContainer extends Sprite
 	public function new() 
 	{
 		super();
-		this.init();
+		var controller:ApplicationController = new ApplicationController(this);
 	}
 	
-	private function init() 
+	public function init() 
 	{
-		trace(this);
+		Lib.trace(this);
 		this.leftBlock = new Sprite();
 		this.rightBlock = new Sprite();
 		//
@@ -37,13 +40,42 @@ class ApplicationContainer extends Sprite
 		this.makeItColor(gr, 0xDDDDDD);
 		//
 		Actuate.tween (this.rightBlock, 1, { x:400 } );
+		//
+		this.dispatchEvent(new Event('needXmlEvent'));
+	}
+	
+	public function makeMenu():Void
+	{
 		//make the menu
-		var b:ButtonBase = new ButtonBase();
-		this.addChild(b);
-		b.x = 10;
-		b.y = 450;
-		b.setBg(0x00FF00);
-		b.setLabel('Home');
+		var btnHome:ButtonBase = new ButtonBase();
+		//this.addChild(b);
+		btnHome.x = 10;
+		btnHome.y = 450;
+		//btnHome.setBg(0x00FF00);
+		btnHome.setLabel('Home');
+		var btnPortfolio:ButtonBase = new ButtonBase();
+		//this.addChild(b);
+		btnPortfolio.x = 120;
+		btnPortfolio.y = 450;
+		//btnContact.setBg(0x00FF00);
+		btnPortfolio.setLabel('Portfolio');
+		var btnAboutUs:ButtonBase = new ButtonBase();
+		//this.addChild(b);
+		btnAboutUs.x = 230;
+		btnAboutUs.y = 450;
+		//btnContact.setBg(0x00FF00);
+		btnAboutUs.setLabel('About Us');
+		var btnContactUs:ButtonBase = new ButtonBase();
+		//this.addChild(b);
+		btnContactUs.x = 340;
+		btnContactUs.y = 450;
+		//btnContact.setBg(0x00FF00);
+		btnContactUs.setLabel('Contact Us');
+		//
+		this.addChild(btnHome);
+		this.addChild(btnPortfolio);
+		this.addChild(btnAboutUs);
+		this.addChild(btnContactUs);
 	}
 	
 	private function makeItColor(g:Graphics,color:Int):Void
@@ -53,4 +85,8 @@ class ApplicationContainer extends Sprite
 		g.endFill();
 	}
 	
+	public function log(message:String):Void
+	{
+		Lib.trace(message);
+	}
 }
