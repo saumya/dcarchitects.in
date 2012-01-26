@@ -1,5 +1,6 @@
 package com.dzinersCombine.view;
 import com.dzinersCombine.view.components.ImageHolderWithBorder;
+import haxe.xml.Fast;
 import nme.Assets;
 import nme.display.Bitmap;
 import nme.display.BitmapData;
@@ -41,7 +42,7 @@ class Portfolio extends Sprite
 		//
 		this.logger = new TextField();
 		this.logger.width = 500;
-		this.logger.height = 100;
+		this.logger.height = 200;
 		this.addChild(this.logger);
 		//make the back-next buttons
 		var bd:BitmapData = Assets.getBitmapData('assets/arrow.png');
@@ -65,8 +66,18 @@ class Portfolio extends Sprite
 		this.addChild(this.imageHolder);
 		this.imageHolder.x = 150;
 		this.imageHolder.y = 10;
+		//get the data
+		this.parseData();
 		//load XML
-		this.loadGalleryConfig();
+		//this.loadGalleryConfig();
+	}
+	
+	private function parseData() 
+	{
+		var s = Assets.getText('assets/slideShow.xml');
+		var x:Xml = Xml.parse(s);
+		var xFast:Fast = new Fast(x.firstElement());
+		this.logger.text = (xFast.node.portfolio.innerHTML);
 	}
 	
 	private function onNext(e:MouseEvent):Void 
@@ -78,18 +89,21 @@ class Portfolio extends Sprite
 	{
 		this.logger.text = 'back';
 	}
-	
+	/*
 	private function loadGalleryConfig() 
 	{
-		var u:URLRequest = new URLRequest('slideShow.xml');
+		var u:URLRequest = new URLRequest('../../../assets/slideShow.xml');
 		var ul:URLLoader = new URLLoader();
+		ul.dataFormat = URLLoaderDataFormat.TEXT;
 		ul.addEventListener(Event.COMPLETE, onDataLoaded);
 		ul.load(u);
 	}
-	
 	private function onDataLoaded(e:Event):Void 
 	{
-		this.logger.text = 'XML is loaded!';
+		this.logger.text = 'XML is loaded! : ' + (e.target).data;
+		var x = (e.target).data;
+		this.logger.text = x.toString();
 	}
+	*/
 	
 }
