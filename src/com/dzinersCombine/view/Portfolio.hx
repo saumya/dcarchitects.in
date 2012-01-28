@@ -27,6 +27,7 @@ class Portfolio extends Sprite
 	private var rightArrow:Sprite;
 	private var imageHolder:ImageHolderWithBorder;
 	private var imageLoader:Loader;
+	private var imageIndex:Int;
 	//
 	private var allImagePaths:Array<String>;
 	
@@ -76,6 +77,7 @@ class Portfolio extends Sprite
 		this.imageLoader = new Loader();
 		this.imageHolder.addChild(this.imageLoader);
 		this.imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageLoadComplete);
+		this.imageIndex = 0;
 		//get the data
 		this.parseData();
 		//load XML
@@ -121,7 +123,7 @@ class Portfolio extends Sprite
 		l.load(u);
 		this.addChild(l);
 		*/
-		var firstImagePath:String = this.allImagePaths[0];
+		var firstImagePath:String = this.allImagePaths[this.imageIndex];
 		this.loadImageInContainer(firstImagePath);
 	}
 	
@@ -133,12 +135,28 @@ class Portfolio extends Sprite
 	
 	private function onNext(e:MouseEvent):Void 
 	{
-		this.logger.text = 'next';
+		this.logger.text = 'next : This is the last image.';
+		if (this.imageIndex>=(this.allImagePaths.length-1))
+		{
+			//DO Nothing
+		}else {
+			this.imageIndex++;
+			this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
+			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+		}
 	}
 	
 	private function onBack(e:MouseEvent):Void 
 	{
-		this.logger.text = 'back';
+		this.logger.text = 'back : Nothing to do. This is the first image.';
+		if (this.imageIndex<=0)
+		{
+			//DO Nothing
+		}else {
+			this.imageIndex--;
+			this.logger.text = 'back : ' + this.allImagePaths[this.imageIndex];
+			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+		}
 	}
 	/*
 	private function loadGalleryConfig() 
