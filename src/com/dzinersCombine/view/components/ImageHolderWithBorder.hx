@@ -22,7 +22,7 @@ class ImageHolderWithBorder extends Sprite
 		g.beginFill(0xFFFFFF, 0.6);
 		g.drawRect(0, 0, 400, 280);
 		g.endFill();
-		g.beginFill(0x000000, 1);
+		g.beginFill(0x000000, 0.3);
 		g.drawRect(5, 5, 390, 270);
 		g.endFill();
 	}

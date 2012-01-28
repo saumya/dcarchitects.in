@@ -4,6 +4,7 @@ import haxe.xml.Fast;
 import nme.Assets;
 import nme.display.Bitmap;
 import nme.display.BitmapData;
+import nme.display.Loader;
 import nme.display.Sprite;
 import nme.Lib;
 import nme.net.URLLoader;
@@ -11,6 +12,7 @@ import nme.net.URLRequest;
 import nme.net.URLLoaderDataFormat;
 import nme.events.Event;
 import nme.events.MouseEvent;
+import nme.events.ProgressEvent;
 import nme.text.TextField;
 
 /**
@@ -24,6 +26,10 @@ class Portfolio extends Sprite
 	private var leftArrow:Sprite;
 	private var rightArrow:Sprite;
 	private var imageHolder:ImageHolderWithBorder;
+	private var imageLoader:Loader;
+	//
+	private var allImagePaths:Array<String>;
+	
 
 	public function new() 
 	{
@@ -66,18 +72,63 @@ class Portfolio extends Sprite
 		this.addChild(this.imageHolder);
 		this.imageHolder.x = 150;
 		this.imageHolder.y = 10;
+		//create the loader
+		this.imageLoader = new Loader();
+		this.imageHolder.addChild(this.imageLoader);
+		this.imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageLoadComplete);
 		//get the data
 		this.parseData();
 		//load XML
 		//this.loadGalleryConfig();
 	}
 	
+	private function onImageLoadComplete(e:Event):Void 
+	{
+		//this.imageHolder.addChild(l);
+		this.logger.text = 'onImageLoadComplete';
+	}
+	
 	private function parseData() 
 	{
 		var s = Assets.getText('assets/slideShow.xml');
-		var x:Xml = Xml.parse(s);
-		var xFast:Fast = new Fast(x.firstElement());
-		this.logger.text = (xFast.node.portfolio.innerHTML);
+		var x:Xml = Xml.parse(s).firstElement();
+		var xFast:Fast = new Fast(x);
+		//this.logger.text = (xFast.node.portfolio.innerHTML);
+		//this.logger.text = (xFast.innerHTML);
+		var portfolioNodes = xFast.node.portfolio;
+		this.logger.text = portfolioNodes.nodes.img.length+' :: ';
+		//Getting the paths
+		//var paths:Array<String> = new Array<String>();
+		this.allImagePaths = new Array<String>();
+		for (dataNode in portfolioNodes.nodes.img)
+		{
+			//this.logger.text += dataNode.att.path;
+			this.allImagePaths.push(dataNode.att.path);
+			this.logger.text += this.allImagePaths.toString();
+		}
+		//render the first image
+		this.startRenderingImages();
+	}
+	
+	private function startRenderingImages() 
+	{
+		/*
+		var u:String = this.allImagePaths[0];
+		this.logger.text = u;
+		var p:String = this.allImagePaths[0];
+		var u:URLRequest = new URLRequest(p);
+		var l:Loader = new Loader();
+		l.load(u);
+		this.addChild(l);
+		*/
+		var firstImagePath:String = this.allImagePaths[0];
+		this.loadImageInContainer(firstImagePath);
+	}
+	
+	private function loadImageInContainer(imagePath:String):Void
+	{
+		var u:URLRequest = new URLRequest(imagePath);
+		this.imageLoader.load(u);
 	}
 	
 	private function onNext(e:MouseEvent):Void 
