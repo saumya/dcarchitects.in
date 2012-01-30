@@ -40,10 +40,10 @@ class Portfolio extends Sprite
 	
 	private function init() 
 	{
-		this.graphics.beginFill(0x000000,0.2);
+		this.graphics.beginFill(0x000000,1.0);
 		this.graphics.drawRect(0, 0, 700, 300);
 		this.graphics.endFill();
-		this.graphics.beginFill(0xFFFFFF,0.5);
+		this.graphics.beginFill(0xFFFFFF,1.0);
 		this.graphics.drawRect(10, 10, 680, 280);
 		this.graphics.endFill();
 		//
@@ -52,10 +52,11 @@ class Portfolio extends Sprite
 		this.logger.height = 200;
 		this.addChild(this.logger);
 		//make the back-next buttons
-		var bd:BitmapData = Assets.getBitmapData('assets/arrow.png');
-		var arrow1:Bitmap = new Bitmap(bd);
-		var arrow2:Bitmap = new Bitmap(bd);
-		arrow2.scaleX = -1;
+		var back:BitmapData = Assets.getBitmapData('assets/aBack.png');
+		var next:BitmapData = Assets.getBitmapData('assets/aNext.png');
+		var arrow1:Bitmap = new Bitmap(back);
+		var arrow2:Bitmap = new Bitmap(next);
+		arrow2.scaleX = 1;
 		this.leftArrow = new Sprite();
 		this.rightArrow = new Sprite();
 		this.addChild(this.leftArrow);
@@ -64,8 +65,10 @@ class Portfolio extends Sprite
 		this.rightArrow.addChild(arrow2);
 		this.leftArrow.x = 10;
 		this.leftArrow.y = 120;
-		this.rightArrow.x = 690;
+		this.rightArrow.x = 640;
 		this.rightArrow.y = 120;
+		this.leftArrow.width = this.rightArrow.width = 50;
+		this.leftArrow.height = this.rightArrow.height = 50;
 		this.leftArrow.addEventListener(MouseEvent.CLICK, onBack);
 		this.rightArrow.addEventListener(MouseEvent.CLICK, onNext);
 		//
@@ -114,6 +117,9 @@ class Portfolio extends Sprite
 	
 	private function startRenderingImages() 
 	{
+		var s = new Bitmap(Assets.getBitmapData('assets/1.jpg'));
+		this.imageHolder.addChild(s);
+		
 		/*
 		var u:String = this.allImagePaths[0];
 		this.logger.text = u;
@@ -123,8 +129,11 @@ class Portfolio extends Sprite
 		l.load(u);
 		this.addChild(l);
 		*/
+		//Working for flash
+		/*
 		var firstImagePath:String = this.allImagePaths[this.imageIndex];
 		this.loadImageInContainer(firstImagePath);
+		*/
 	}
 	
 	private function loadImageInContainer(imagePath:String):Void
@@ -136,6 +145,7 @@ class Portfolio extends Sprite
 	private function onNext(e:MouseEvent):Void 
 	{
 		this.logger.text = 'next : This is the last image.';
+		/*
 		if (this.imageIndex>=(this.allImagePaths.length-1))
 		{
 			//DO Nothing
@@ -144,11 +154,13 @@ class Portfolio extends Sprite
 			this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
 			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
 		}
+		*/
 	}
 	
 	private function onBack(e:MouseEvent):Void 
 	{
 		this.logger.text = 'back : Nothing to do. This is the first image.';
+		/*
 		if (this.imageIndex<=0)
 		{
 			//DO Nothing
@@ -157,6 +169,7 @@ class Portfolio extends Sprite
 			this.logger.text = 'back : ' + this.allImagePaths[this.imageIndex];
 			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
 		}
+		*/
 	}
 	/*
 	private function loadGalleryConfig() 

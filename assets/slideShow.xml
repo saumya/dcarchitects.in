@@ -4,14 +4,5 @@
 		<img id="one" info="one" path="1.jpg" />
 		<img id="one" info="two" path="2.jpg" />
 		<img id="one" info="three" path="3.jpg" />
-		<img id="one" info="one" path="1.jpg" />
-		<img id="one" info="two" path="2.jpg" />
-		<img id="one" info="three" path="3.jpg" />
-		<img id="one" info="one" path="1.jpg" />
-		<img id="one" info="two" path="2.jpg" />
-		<img id="one" info="three" path="3.jpg" />
-		<img id="one" info="one" path="1.jpg" />
-		<img id="one" info="two" path="2.jpg" />
-		<img id="one" info="three" path="3.jpg" />
 	</portfolio>
 </data>
