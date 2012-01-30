@@ -103,7 +103,7 @@ class ApplicationContainer extends Sprite
 		}
 		//
 		var b:ButtonBase = e.target;
-		b.setBg(0x00FF00);
+		b.setBg(0xFFFFFF);
 		this.activeButton = b;
 		//
 		switch(b.getName())
