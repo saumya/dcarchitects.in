@@ -50,6 +50,8 @@ class Portfolio extends Sprite
 		this.logger = new TextField();
 		this.logger.width = 500;
 		this.logger.height = 200;
+		this.logger.x = 20;
+		this.logger.y = 20;
 		this.addChild(this.logger);
 		//make the back-next buttons
 		var back:BitmapData = Assets.getBitmapData('assets/aBack.png');
@@ -117,9 +119,10 @@ class Portfolio extends Sprite
 	
 	private function startRenderingImages() 
 	{
+		/*
 		var s = new Bitmap(Assets.getBitmapData('assets/1.jpg'));
 		this.imageHolder.addChild(s);
-		
+		*/
 		/*
 		var u:String = this.allImagePaths[0];
 		this.logger.text = u;
@@ -134,18 +137,25 @@ class Portfolio extends Sprite
 		var firstImagePath:String = this.allImagePaths[this.imageIndex];
 		this.loadImageInContainer(firstImagePath);
 		*/
+		this.logger.text = this.allImagePaths[this.imageIndex];
+		var b = new Bitmap(Assets.getBitmapData(this.allImagePaths[this.imageIndex]));
+		this.imageHolder.addChild(b);
 	}
 	
 	private function loadImageInContainer(imagePath:String):Void
 	{
-		var u:URLRequest = new URLRequest(imagePath);
-		this.imageLoader.load(u);
+		this.logger.text = 'loadImageInContainer : imagePath=' + imagePath;
+		this.imageHolder.removeChildAt(0);
+		var b = new Bitmap(Assets.getBitmapData(this.allImagePaths[this.imageIndex]));
+		this.imageHolder.addChild(b);
+		//var u:URLRequest = new URLRequest(imagePath);
+		//this.imageLoader.load(u);
 	}
 	
 	private function onNext(e:MouseEvent):Void 
 	{
 		this.logger.text = 'next : This is the last image.';
-		/*
+		
 		if (this.imageIndex>=(this.allImagePaths.length-1))
 		{
 			//DO Nothing
@@ -154,13 +164,13 @@ class Portfolio extends Sprite
 			this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
 			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
 		}
-		*/
+		
 	}
 	
 	private function onBack(e:MouseEvent):Void 
 	{
 		this.logger.text = 'back : Nothing to do. This is the first image.';
-		/*
+		
 		if (this.imageIndex<=0)
 		{
 			//DO Nothing
@@ -169,7 +179,7 @@ class Portfolio extends Sprite
 			this.logger.text = 'back : ' + this.allImagePaths[this.imageIndex];
 			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
 		}
-		*/
+		
 	}
 	/*
 	private function loadGalleryConfig() 
