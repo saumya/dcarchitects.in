@@ -2,7 +2,17 @@
 <data>
 	<portfolio>
 		<img id="one" info="one" path="assets/1.jpg" />
-		<img id="one" info="two" path="assets/2.jpg" />
-		<img id="one" info="three" path="assets/3.jpg" />
+		<img id="two" info="two" path="assets/2_1.jpg" />
+		<img id="three" info="three" path="assets/2_2.jpg" />
+		<img id="three" info="three" path="assets/3_1.jpg" />
+		<img id="three" info="three" path="assets/3_2.jpg" />
+		<img id="three" info="three" path="assets/3_3.jpg" />
+		<img id="three" info="three" path="assets/3_4.jpg" />
+		<img id="three" info="three" path="assets/3_5.jpg" />
+		<img id="three" info="three" path="assets/3_6.jpg" />
+		<img id="three" info="three" path="assets/3_7.jpg" />
+		<img id="three" info="three" path="assets/3_8.jpg" />
+		<img id="three" info="three" path="assets/3_9.jpg" />
+		<img id="three" info="three" path="assets/3_10.jpg" />
 	</portfolio>
 </data>
