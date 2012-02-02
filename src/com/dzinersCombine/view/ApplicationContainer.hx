@@ -35,7 +35,11 @@ class ApplicationContainer extends Sprite
 	
 	public function init() 
 	{
-		Lib.trace(this);
+		var g:Graphics = this.graphics;
+		g.beginFill(0xFF0000,0.7);
+		g.drawRect(0, 0, 800, 600);
+		g.endFill();
+		//
 		this.leftBlock = new Sprite();
 		this.rightBlock = new Sprite();
 		//
@@ -45,7 +49,7 @@ class ApplicationContainer extends Sprite
 		var gl:Graphics = this.leftBlock.graphics;
 		var gr:Graphics = this.rightBlock.graphics;
 		this.makeItColor(gl, 0xFF0000);
-		this.makeItColor(gr, 0xDDDDDD);
+		this.makeItColor(gr, 0xFFFFFF);
 		//
 		Actuate.tween (this.rightBlock, 1, { x:400 } );
 		//
@@ -103,7 +107,7 @@ class ApplicationContainer extends Sprite
 		}
 		//
 		var b:ButtonBase = e.target;
-		b.setBg(0xFFFFFF);
+		b.setBg(0x00FF00);
 		this.activeButton = b;
 		//
 		switch(b.getName())

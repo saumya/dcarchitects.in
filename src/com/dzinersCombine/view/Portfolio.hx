@@ -52,7 +52,7 @@ class Portfolio extends Sprite
 		this.logger.height = 200;
 		this.logger.x = 20;
 		this.logger.y = 20;
-		this.addChild(this.logger);
+		//this.addChild(this.logger);
 		//make the back-next buttons
 		var back:BitmapData = Assets.getBitmapData('assets/aBack.png');
 		var next:BitmapData = Assets.getBitmapData('assets/aNext.png');
@@ -80,7 +80,7 @@ class Portfolio extends Sprite
 		this.imageHolder.y = 10;
 		//create the loader
 		this.imageLoader = new Loader();
-		this.imageHolder.addChild(this.imageLoader);
+		//this.imageHolder.addChild(this.imageLoader);
 		this.imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageLoadComplete);
 		this.imageIndex = 0;
 		//get the data
@@ -144,8 +144,10 @@ class Portfolio extends Sprite
 	
 	private function loadImageInContainer(imagePath:String):Void
 	{
-		this.logger.text = 'loadImageInContainer : imagePath=' + imagePath;
+		//this.logger.text = 'loadImageInContainer : imagePath=' + imagePath;
+		this.logger.text = this.imageHolder.numChildren + '';
 		this.imageHolder.removeChildAt(0);
+		//this.imageHolder.removeChildAt(1);
 		var b = new Bitmap(Assets.getBitmapData(this.allImagePaths[this.imageIndex]));
 		this.imageHolder.addChild(b);
 		//var u:URLRequest = new URLRequest(imagePath);
@@ -154,14 +156,14 @@ class Portfolio extends Sprite
 	
 	private function onNext(e:MouseEvent):Void 
 	{
-		this.logger.text = 'next : This is the last image.';
+		//this.logger.text = 'next : This is the last image.';
 		
 		if (this.imageIndex>=(this.allImagePaths.length-1))
 		{
 			//DO Nothing
 		}else {
 			this.imageIndex++;
-			this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
+			//this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
 			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
 		}
 		
@@ -169,14 +171,14 @@ class Portfolio extends Sprite
 	
 	private function onBack(e:MouseEvent):Void 
 	{
-		this.logger.text = 'back : Nothing to do. This is the first image.';
+		//this.logger.text = 'back : Nothing to do. This is the first image.';
 		
 		if (this.imageIndex<=0)
 		{
 			//DO Nothing
 		}else {
 			this.imageIndex--;
-			this.logger.text = 'back : ' + this.allImagePaths[this.imageIndex];
+			//this.logger.text = 'back : ' + this.allImagePaths[this.imageIndex];
 			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
 		}
 		
