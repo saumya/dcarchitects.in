@@ -2,11 +2,13 @@ package com.dzinersCombine.view;
 
 import com.dzinersCombine.controller.ApplicationController;
 import com.dzinersCombine.view.components.VCard;
+import nme.display.Bitmap;
 import nme.display.Graphics;
 import nme.display.Sprite;
 import nme.events.Event;
 import nme.events.MouseEvent;
 import nme.Lib;
+import nme.Assets;
 
 import com.eclecticdesignstudio.motion.Actuate;
 
@@ -49,7 +51,11 @@ class ApplicationContainer extends Sprite
 		var gl:Graphics = this.leftBlock.graphics;
 		var gr:Graphics = this.rightBlock.graphics;
 		this.makeItColor(gl, 0xFF0000);
-		this.makeItColor(gr, 0xFFFFFF);
+		this.makeItColor(gr, 0x00FF00);
+		//adding logo to the left side of the background
+		var b = new Bitmap(Assets.getBitmapData('assets/vcardSmall.jpg'));
+		this.leftBlock.addChild(b);
+		
 		//
 		Actuate.tween (this.rightBlock, 1, { x:400 } );
 		//
