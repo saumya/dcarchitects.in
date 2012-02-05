@@ -40,6 +40,7 @@ class ContactUs extends Sprite
 		//
 		//this.font = Assets.getFont ("assets/Matchbook.ttf");
 		this.format = new TextFormat (20, 0x777777);
+		this.format.leading = 20;
 		/*
 		  	textField.defaultTextFormat = format;
 			textField.selectable = false;
