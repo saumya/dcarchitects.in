@@ -40,12 +40,14 @@ class Portfolio extends Sprite
 	
 	private function init() 
 	{
-		this.graphics.beginFill(0x000000,1.0);
+		
+		this.graphics.beginFill(0x777777,1.0);
 		this.graphics.drawRect(0, 0, 700, 300);
 		this.graphics.endFill();
-		this.graphics.beginFill(0xFFFFFF,1.0);
+		this.graphics.beginFill(0xAAAAAA,1.0);
 		this.graphics.drawRect(10, 10, 680, 280);
 		this.graphics.endFill();
+		
 		//
 		this.logger = new TextField();
 		this.logger.width = 500;
@@ -58,19 +60,18 @@ class Portfolio extends Sprite
 		var next:BitmapData = Assets.getBitmapData('assets/aNext.png');
 		var arrow1:Bitmap = new Bitmap(back);
 		var arrow2:Bitmap = new Bitmap(next);
-		arrow2.scaleX = 1;
 		this.leftArrow = new Sprite();
 		this.rightArrow = new Sprite();
 		this.addChild(this.leftArrow);
 		this.addChild(this.rightArrow);
 		this.leftArrow.addChild(arrow1);
 		this.rightArrow.addChild(arrow2);
-		this.leftArrow.x = 10;
+		this.leftArrow.x = 0;
 		this.leftArrow.y = 120;
-		this.rightArrow.x = 640;
+		this.rightArrow.x = 636;
 		this.rightArrow.y = 120;
-		this.leftArrow.width = this.rightArrow.width = 50;
-		this.leftArrow.height = this.rightArrow.height = 50;
+		//this.leftArrow.width = this.rightArrow.width = 20;
+		//this.leftArrow.height = this.rightArrow.height = 20;
 		this.leftArrow.addEventListener(MouseEvent.CLICK, onBack);
 		this.rightArrow.addEventListener(MouseEvent.CLICK, onNext);
 		//
@@ -79,22 +80,22 @@ class Portfolio extends Sprite
 		this.imageHolder.x = 150;
 		this.imageHolder.y = 10;
 		//create the loader
-		this.imageLoader = new Loader();
+		//this.imageLoader = new Loader();
 		//this.imageHolder.addChild(this.imageLoader);
-		this.imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageLoadComplete);
+		//this.imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageLoadComplete);
 		this.imageIndex = 0;
 		//get the data
 		this.parseData();
 		//load XML
 		//this.loadGalleryConfig();
 	}
-	
+	/*
 	private function onImageLoadComplete(e:Event):Void 
 	{
 		//this.imageHolder.addChild(l);
 		this.logger.text = 'onImageLoadComplete';
 	}
-	
+	*/
 	private function parseData() 
 	{
 		var s = Assets.getText('assets/slideShow.xml');

@@ -1,6 +1,9 @@
 package com.dzinersCombine.view;
 import com.dzinersCombine.view.components.VCard;
 import nme.display.Sprite;
+import nme.text.Font;
+import nme.text.TextFormat;
+import nme.Assets;
 
 /**
  * ...
@@ -9,6 +12,8 @@ import nme.display.Sprite;
 
 class AboutUsView extends Sprite
 {
+	private var font:Font;
+	private var format:TextFormat;
 
 	public function new() 
 	{
@@ -17,8 +22,8 @@ class AboutUsView extends Sprite
 	}
 	
 	private function init() 
-	{
-		this.graphics.beginFill(0xFFFFFF, 0.5);
+	{	
+		this.graphics.beginFill(0xFFFF00, 0.8);
 		this.graphics.drawRect(0, 0, 700, 300);
 		this.graphics.endFill();
 		//

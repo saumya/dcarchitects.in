@@ -1,7 +1,11 @@
 package com.dzinersCombine.view;
 import nme.display.Sprite;
+import nme.text.Font;
 import nme.text.TextField;
 import nme.text.TextFieldType;
+import nme.text.TextFormat;
+import nme.Lib;
+import nme.Assets;
 
 /**
  * ...
@@ -15,6 +19,9 @@ class ContactUs extends Sprite
 	private var guestMessage:TextField;
 	private var submitBtn:ButtonBase;
 	private var address:TextField;
+	//
+	private var font:Font;
+	private var format:TextFormat;
 
 	public function new() 
 	{
@@ -30,6 +37,14 @@ class ContactUs extends Sprite
 		this.graphics.beginFill(0xFFFFFF);
 		this.graphics.drawRect(10, 10, 680, 280);
 		this.graphics.endFill();
+		//
+		this.font = Assets.getFont ("assets/Matchbook.ttf");
+		this.format = new TextFormat (this.font.fontName, 32, 0x777777);
+		/*
+		  	textField.defaultTextFormat = format;
+			textField.selectable = false;
+			textField.embedFonts = true;
+		*/
 		//
 		this.guestName = new TextField();
 		this.guestName.width = 150;
@@ -53,10 +68,10 @@ class ContactUs extends Sprite
 		this.guestMessage.width = 150;
 		this.guestMessage.height = 100;
 		this.guestMessage.border = true;
-		this.guestMessage.text = 'Hi, This is my message. \n I like your work and want to reach you for a project.';
 		this.guestMessage.type = TextFieldType.INPUT;
 		this.guestMessage.multiline = true;
 		this.guestMessage.wordWrap = true;
+		this.guestMessage.text = 'Hi, This is my message. \n I like your work and want to reach you for a project.';
 		this.guestMessage.x = 100;
 		this.guestMessage.y = 110;
 		this.addChild(this.guestMessage);
@@ -68,13 +83,16 @@ class ContactUs extends Sprite
 		this.addChild(this.submitBtn);
 		//
 		this.address = new TextField();
-		this.address.width = 200;
+		this.address.width = 400;
 		this.address.height = 300;
 		this.address.multiline = true;
 		this.address.wordWrap = true;
 		this.address.x = 300;
 		this.address.y = 50;
-		this.address.text = 'dziners combine architects, \n Plot no : 001, Colony : tsting, \n Pin : 990099, India.';
+		this.address.defaultTextFormat = this.format;
+		this.address.embedFonts = true;
+		this.address.text = 'dziners combine architects, \n3,Samrudhi Apt., Plot no. 74, Sl no. 95, \nRight Bhusari Colony,\nOff Paud Road, Kothrud, \nPune, 411038';
+		
 		this.addChild(this.address);
 		
 	}
