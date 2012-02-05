@@ -38,8 +38,8 @@ class ContactUs extends Sprite
 		this.graphics.drawRect(10, 10, 680, 280);
 		this.graphics.endFill();
 		//
-		this.font = Assets.getFont ("assets/Matchbook.ttf");
-		this.format = new TextFormat (this.font.fontName, 32, 0x777777);
+		//this.font = Assets.getFont ("assets/Matchbook.ttf");
+		this.format = new TextFormat (20, 0x777777);
 		/*
 		  	textField.defaultTextFormat = format;
 			textField.selectable = false;
@@ -90,7 +90,7 @@ class ContactUs extends Sprite
 		this.address.x = 300;
 		this.address.y = 50;
 		this.address.defaultTextFormat = this.format;
-		this.address.embedFonts = true;
+		//this.address.embedFonts = true;
 		this.address.text = 'dziners combine architects, \n3,Samrudhi Apt., Plot no. 74, Sl no. 95, \nRight Bhusari Colony,\nOff Paud Road, Kothrud, \nPune, 411038';
 		
 		this.addChild(this.address);

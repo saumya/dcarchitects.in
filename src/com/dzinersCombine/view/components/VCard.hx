@@ -26,8 +26,8 @@ class VCard extends Sprite
 	
 	private function init():Void 
 	{
-		this.font = Assets.getFont ("assets/Matchbook.ttf");
-		this.format = new TextFormat (this.font.fontName, 28, 0x000000);
+		//this.font = Assets.getFont ("assets/Matchbook.ttf");
+		this.format = new TextFormat (16, 0x000000);
 		//
 		this.graphics.beginFill(0x000000);
 		this.graphics.drawRect(0, 0, 150, 80);
@@ -57,14 +57,14 @@ class VCard extends Sprite
 	public function setName(s:String):Void
 	{
 		this.who.defaultTextFormat = this.format;
-		this.who.embedFonts = true;
+		//this.who.embedFonts = true;
 		this.who.text = s;
 	}
 	
 	public function setDesignation(s:String):Void
 	{
 		this.what.defaultTextFormat = this.format;
-		this.what.embedFonts = true;
+		//this.what.embedFonts = true;
 		this.what.text = s;
 	}
 	

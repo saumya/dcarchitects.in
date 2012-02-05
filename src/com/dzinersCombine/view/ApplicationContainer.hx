@@ -51,7 +51,7 @@ class ApplicationContainer extends Sprite
 		var gl:Graphics = this.leftBlock.graphics;
 		var gr:Graphics = this.rightBlock.graphics;
 		this.makeItColor(gl, 0xFF0000);
-		this.makeItColor(gr, 0x00FF00);
+		this.makeItColor(gr, 0xFFFFFF);
 		//adding logo to the left side of the background
 		var b = new Bitmap(Assets.getBitmapData('assets/vcardSmall.jpg'));
 		this.leftBlock.addChild(b);
