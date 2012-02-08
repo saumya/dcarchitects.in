@@ -30,6 +30,13 @@ class Portfolio extends Sprite
 	private var imageIndex:Int;
 	//
 	private var allImagePaths:Array<String>;
+	private var civilNodes:Fast;
+	private var interiorNodes:Fast;
+	private var civilImagePaths:Array<String>;
+	private var interiorImagePaths:Array<String>;
+	//
+	private var isCivilOnDisplay:Bool;
+	private var isInteriorOnDisplay:Bool;
 	
 
 	public function new() 
@@ -103,19 +110,36 @@ class Portfolio extends Sprite
 		var xFast:Fast = new Fast(x);
 		//this.logger.text = (xFast.node.portfolio.innerHTML);
 		//this.logger.text = (xFast.innerHTML);
-		var portfolioNodes = xFast.node.portfolio;
-		this.logger.text = portfolioNodes.nodes.img.length+' :: ';
+		var portfolioNodes =xFast.node.portfolio ;
+		//var portfolioNodes =xFast.node.portfolio.node.interior ;
+		
+		this.interiorNodes = xFast.node.portfolio.node.interior;
+		this.civilNodes = xFast.node.portfolio.node.civil;
+		//
+		//this.logger.text = portfolioNodes.nodes.img.length+' :: ';
 		//Getting the paths
 		//var paths:Array<String> = new Array<String>();
-		this.allImagePaths = new Array<String>();
-		for (dataNode in portfolioNodes.nodes.img)
+		//this.allImagePaths = new Array<String>();
+		this.civilImagePaths = new Array<String>();
+		this.interiorImagePaths = new Array<String>();
+		//parsing civil data
+		for (dataNode in this.civilNodes.nodes.img)
+		//for (dataNode in this.interiorNodes.nodes.img)
 		{
 			//this.logger.text += dataNode.att.path;
-			this.allImagePaths.push(dataNode.att.path);
-			this.logger.text += this.allImagePaths.toString();
+			this.civilImagePaths.push(dataNode.att.path);
+			//this.logger.text += this.allImagePaths.toString();
+		}
+		//parsing interior data
+		for (dataNode in this.interiorNodes.nodes.img)
+		{
+			this.interiorImagePaths.push(dataNode.att.path);
+			//this.logger.text += this.allImagePaths.toString();
 		}
 		//render the first image
-		this.startRenderingImages();
+		//this.startRenderingImages();
+		this.isCivilOnDisplay = false;
+		this.isInteriorOnDisplay = false;
 	}
 	
 	private function startRenderingImages() 
@@ -146,11 +170,32 @@ class Portfolio extends Sprite
 	private function loadImageInContainer(imagePath:String):Void
 	{
 		//this.logger.text = 'loadImageInContainer : imagePath=' + imagePath;
-		this.logger.text = this.imageHolder.numChildren + '';
-		this.imageHolder.removeChildAt(0);
+		//this.logger.text = this.imageHolder.numChildren + '';
+		//this.imageHolder.removeChildAt(0);
+		var n = this.imageHolder.numChildren-1;
+		if (n>0)
+		{
+			for (i in 0 ... n )
+			{
+				this.imageHolder.removeChildAt(i);
+			}
+		}
 		//this.imageHolder.removeChildAt(1);
-		var b = new Bitmap(Assets.getBitmapData(this.allImagePaths[this.imageIndex]));
-		this.imageHolder.addChild(b);
+		//var b = new Bitmap(Assets.getBitmapData(this.allImagePaths[this.imageIndex]));
+		//var b:Bitmap = new Bitmap();
+			if (this.isCivilOnDisplay)
+			{
+				//this.loadImageInContainer(this.civilImagePaths[this.imageIndex]);
+				this.imageHolder.removeChildAt(0);
+				var b:Bitmap = new Bitmap(Assets.getBitmapData(this.civilImagePaths[this.imageIndex]));
+				this.imageHolder.addChild(b);
+			}else if (this.isInteriorOnDisplay)
+			{
+				this.imageHolder.removeChildAt(0);
+				var b:Bitmap = new Bitmap(Assets.getBitmapData(this.interiorImagePaths[this.imageIndex]));
+				this.imageHolder.addChild(b);
+			}
+		//this.imageHolder.addChild(b);
 		//var u:URLRequest = new URLRequest(imagePath);
 		//this.imageLoader.load(u);
 	}
@@ -158,31 +203,77 @@ class Portfolio extends Sprite
 	private function onNext(e:MouseEvent):Void 
 	{
 		//this.logger.text = 'next : This is the last image.';
-		
-		if (this.imageIndex>=(this.allImagePaths.length-1))
+		if (this.isCivilOnDisplay)
 		{
-			//DO Nothing
-		}else {
-			this.imageIndex++;
-			//this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
-			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+			//this.loadImageInContainer(this.civilImagePaths[this.imageIndex]);
+			if (this.imageIndex>=(this.civilImagePaths.length-1))
+			{
+				//DO Nothing
+			}else {
+				this.imageIndex++;
+				//this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
+				//this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+				this.loadImageInContainer(this.civilImagePaths[this.imageIndex]);
+			}
+		}else if (this.isInteriorOnDisplay)
+		{
+			//this.loadImageInContainer(this.interiorImagePaths[this.imageIndex]);
+			if (this.imageIndex>=(this.interiorImagePaths.length-1))
+			{
+				//DO Nothing
+			}else {
+				this.imageIndex++;
+				//this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
+				//this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+				this.loadImageInContainer(this.interiorImagePaths[this.imageIndex]);
+			}
 		}
-		
 	}
 	
 	private function onBack(e:MouseEvent):Void 
 	{
 		//this.logger.text = 'back : Nothing to do. This is the first image.';
-		
+		/*
 		if (this.imageIndex<=0)
 		{
 			//DO Nothing
 		}else {
 			this.imageIndex--;
 			//this.logger.text = 'back : ' + this.allImagePaths[this.imageIndex];
-			this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+			if (this.isCivilOnDisplay)
+			{
+				this.loadImageInContainer(this.civilImagePaths[this.imageIndex]);
+			}else if (this.isInteriorOnDisplay)
+			{
+				this.loadImageInContainer(this.interiorImagePaths[this.imageIndex]);
+			}
 		}
-		
+		*/
+		if (this.isCivilOnDisplay)
+		{
+			//this.loadImageInContainer(this.civilImagePaths[this.imageIndex]);
+			if (this.imageIndex<1)
+			{
+				//DO Nothing
+			}else {
+				this.imageIndex--;
+				//this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
+				//this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+				this.loadImageInContainer(this.civilImagePaths[this.imageIndex]);
+			}
+		}else if (this.isInteriorOnDisplay)
+		{
+			//this.loadImageInContainer(this.interiorImagePaths[this.imageIndex]);
+			if (this.imageIndex<1)
+			{
+				//DO Nothing
+			}else {
+				this.imageIndex--;
+				//this.logger.text = 'next : ' + this.allImagePaths[this.imageIndex];
+				//this.loadImageInContainer(this.allImagePaths[this.imageIndex]);
+				this.loadImageInContainer(this.interiorImagePaths[this.imageIndex]);
+			}
+		}
 	}
 	/*
 	private function loadGalleryConfig() 
@@ -201,4 +292,22 @@ class Portfolio extends Sprite
 	}
 	*/
 	
+	public function startRenderingCivilPortfolio():Void
+	{
+		this.imageIndex = 0;
+		var b = new Bitmap(Assets.getBitmapData(this.civilImagePaths[this.imageIndex]));
+		this.imageHolder.addChild(b);
+		//
+		this.isCivilOnDisplay = true;
+		this.isInteriorOnDisplay = false;
+	}
+	public function startRenderingInteriorPortfolio():Void
+	{
+		this.imageIndex = 0;
+		var b = new Bitmap(Assets.getBitmapData(this.interiorImagePaths[this.imageIndex]));
+		this.imageHolder.addChild(b);
+		//
+		this.isCivilOnDisplay = false;
+		this.isInteriorOnDisplay = true;
+	}
 }

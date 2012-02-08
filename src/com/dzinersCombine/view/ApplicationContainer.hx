@@ -28,6 +28,9 @@ class ApplicationContainer extends Sprite
 	private var aboutUs:AboutUsView;
 	private var contactUs:ContactUs;
 	private var portfolio:Portfolio;
+	//
+	private var btnCivil:ButtonBase;
+	private var btnInterior:ButtonBase;
 
 	public function new() 
 	{
@@ -89,16 +92,33 @@ class ApplicationContainer extends Sprite
 		btnContactUs.y = 450;
 		//btnContact.setBg(0x00FF00);
 		btnContactUs.setLabel('Contact Us');
+		//creates the portfolio buttons
+		this.btnCivil = new ButtonBase();
+		this.btnCivil.x = 70;
+		this.btnCivil.y = 420;
+		this.btnCivil.setLabel('Civil');
+		this.btnInterior = new ButtonBase();
+		this.btnInterior.x = 200;
+		this.btnInterior.y = 420;
+		this.btnInterior.setLabel('Interior');
+		this.btnCivil.visible = false;
+		this.btnInterior.visible = false;
 		//
 		btnHome.addEventListener(MouseEvent.CLICK, onUserSelect);
 		btnPortfolio.addEventListener(MouseEvent.CLICK, onUserSelect);
 		btnAboutUs.addEventListener(MouseEvent.CLICK, onUserSelect);
 		btnContactUs.addEventListener(MouseEvent.CLICK, onUserSelect);
+		//portfolio
+		this.btnCivil.addEventListener(MouseEvent.CLICK, onUserSelect);
+		this.btnInterior.addEventListener(MouseEvent.CLICK, onUserSelect);
 		//
 		this.addChild(btnHome);
 		this.addChild(btnPortfolio);
 		this.addChild(btnAboutUs);
 		this.addChild(btnContactUs);
+		//
+		this.addChild(this.btnCivil);
+		this.addChild(this.btnInterior);
 		//
 		this.renderAboutUs();
 		this.renderContactUs();
@@ -107,6 +127,9 @@ class ApplicationContainer extends Sprite
 	
 	private function onUserSelect(e:MouseEvent):Void 
 	{
+		this.btnCivil.visible = false;
+		this.btnInterior.visible = false;
+		//
 		if (this.activeButton!=null)
 		{
 			this.activeButton.setBg(0xFF0000);//TODO: make a reset() method on button class
@@ -130,6 +153,17 @@ class ApplicationContainer extends Sprite
 				this.aboutUs.visible = false;
 				this.contactUs.visible = false;
 				this.portfolio.visible = true;
+				//
+				this.btnCivil.visible = true;
+				this.btnInterior.visible = true;
+			case 'Civil' :
+				this.portfolio.startRenderingCivilPortfolio();
+				this.btnCivil.visible = true;
+				this.btnInterior.visible = true;
+			case 'Interior' :
+				this.portfolio.startRenderingInteriorPortfolio();
+				this.btnCivil.visible = true;
+				this.btnInterior.visible = true;
 			default :
 				this.aboutUs.visible = false;
 				this.contactUs.visible = false;
