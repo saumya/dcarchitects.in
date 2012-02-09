@@ -30,13 +30,13 @@ class AboutUsView extends Sprite
 		var vRahul:VCard = new VCard();
 		vRahul.setName('Rahul Talele');
 		vRahul.setDesignation('Chief Architect');
-		vRahul.x = 170;
+		vRahul.x = 150;
 		vRahul.y = 50;
 		this.addChild(vRahul);
 		var vSaumya:VCard = new VCard();
 		vSaumya.setName('Saumya Ray');
 		vSaumya.setDesignation('Asst. Architect');
-		vSaumya.x = 170;
+		vSaumya.x = 150;
 		vSaumya.y = 160;
 		this.addChild(vSaumya);
 		var vSeema:VCard = new VCard();

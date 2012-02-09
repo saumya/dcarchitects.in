@@ -294,6 +294,8 @@ class Portfolio extends Sprite
 	
 	public function startRenderingCivilPortfolio():Void
 	{
+		this.clearPortfolio();
+		//
 		this.imageIndex = 0;
 		var b = new Bitmap(Assets.getBitmapData(this.civilImagePaths[this.imageIndex]));
 		this.imageHolder.addChild(b);
@@ -303,11 +305,24 @@ class Portfolio extends Sprite
 	}
 	public function startRenderingInteriorPortfolio():Void
 	{
+		this.clearPortfolio();
+		//
 		this.imageIndex = 0;
 		var b = new Bitmap(Assets.getBitmapData(this.interiorImagePaths[this.imageIndex]));
 		this.imageHolder.addChild(b);
 		//
 		this.isCivilOnDisplay = false;
 		this.isInteriorOnDisplay = true;
+	}
+	private function clearPortfolio():Void
+	{
+		var n = this.imageHolder.numChildren;
+		if (n>0)
+		{
+			for (i in 0 ... n )
+			{
+				this.imageHolder.removeChildAt(i);
+			}
+		}
 	}
 }

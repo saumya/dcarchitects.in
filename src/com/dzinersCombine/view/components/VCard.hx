@@ -30,10 +30,10 @@ class VCard extends Sprite
 		this.format = new TextFormat (16, 0x000000);
 		//
 		this.graphics.beginFill(0x000000);
-		this.graphics.drawRect(0, 0, 150, 80);
+		this.graphics.drawRect(0, 0, 170, 80);
 		this.graphics.endFill();
 		this.graphics.beginFill(0xFFFFFF);
-		this.graphics.drawRect(5, 5, 140, 70);
+		this.graphics.drawRect(5, 5, 160, 70);
 		this.graphics.endFill();
 		//
 		this.who = new TextField();

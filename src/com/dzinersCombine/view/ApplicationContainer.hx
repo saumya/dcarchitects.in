@@ -94,12 +94,12 @@ class ApplicationContainer extends Sprite
 		btnContactUs.setLabel('Contact Us');
 		//creates the portfolio buttons
 		this.btnCivil = new ButtonBase();
-		this.btnCivil.x = 70;
-		this.btnCivil.y = 420;
+		this.btnCivil.x = 60;
+		this.btnCivil.y = 426;
 		this.btnCivil.setLabel('Civil');
 		this.btnInterior = new ButtonBase();
-		this.btnInterior.x = 200;
-		this.btnInterior.y = 420;
+		this.btnInterior.x = 170;
+		this.btnInterior.y = 426;
 		this.btnInterior.setLabel('Interior');
 		this.btnCivil.visible = false;
 		this.btnInterior.visible = false;

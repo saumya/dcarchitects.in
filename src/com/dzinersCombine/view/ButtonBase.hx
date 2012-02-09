@@ -1,7 +1,10 @@
 package com.dzinersCombine.view;
 import nme.display.Graphics;
 import nme.display.Sprite;
+import nme.text.Font;
 import nme.text.TextField;
+import nme.text.TextFormat;
+import nme.text.TextFormatAlign;
 
 /**
  * ...
@@ -11,6 +14,9 @@ import nme.text.TextField;
 class ButtonBase extends Sprite
 {
 	private var label:TextField;
+	//
+	private var font:Font;
+	private var format:TextFormat;
 
 	public function new() 
 	{
@@ -31,8 +37,14 @@ class ButtonBase extends Sprite
 		this.label.text = 'Label';
 		this.label.mouseEnabled = false;
 		this.label.selectable = false;
+		//this.label.embedFonts = true;
+		this.label.x = 5;
 		//
 		this.addChild(this.label);
+		//
+		this.format = new TextFormat (16, 0x000000);
+		//this.format.letterSpacing = 2;
+		//this.format.align = TextFormatAlign.CENTER;
 	}
 	
 	public function setBg(color:Int):Void
@@ -45,6 +57,7 @@ class ButtonBase extends Sprite
 	
 	public function setLabel(s:String):Void
 	{
+		this.label.defaultTextFormat = this.format;
 		this.label.text = s;
 	}
 	

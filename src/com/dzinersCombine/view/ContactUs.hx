@@ -47,6 +47,7 @@ class ContactUs extends Sprite
 			textField.embedFonts = true;
 		*/
 		//
+		/*
 		this.guestName = new TextField();
 		this.guestName.width = 150;
 		this.guestName.height = 20;
@@ -82,14 +83,15 @@ class ContactUs extends Sprite
 		this.submitBtn.x = 100;
 		this.submitBtn.y = 220;
 		this.addChild(this.submitBtn);
+		*/
 		//
 		this.address = new TextField();
 		this.address.width = 400;
 		this.address.height = 300;
 		this.address.multiline = true;
 		this.address.wordWrap = true;
-		this.address.x = 300;
-		this.address.y = 50;
+		this.address.x = 200;
+		this.address.y = 80;
 		this.address.defaultTextFormat = this.format;
 		//this.address.embedFonts = true;
 		this.address.text = 'dziners combine architects, \n3,Samrudhi Apt., Plot no. 74, Sl no. 95, \nRight Bhusari Colony,\nOff Paud Road, Kothrud, \nPune, 411038';
